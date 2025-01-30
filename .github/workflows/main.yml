@@ -32,8 +32,8 @@ jobs:
           ECR_REPOSITORY_MYSQL: clo835-mysql
           IMAGE_TAG: latest
         run: |
-          cd mysql/
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_MYSQL:$IMAGE_TAG .
+          cd templates/
+          docker build -f Dockerfile_mysql -t $ECR_REGISTRY/$ECR_REPOSITORY_MYSQL:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_MYSQL:$IMAGE_TAG
 
       - name: Build, tag, and push Web App image
@@ -42,6 +42,6 @@ jobs:
           ECR_REPOSITORY_APP: clo835-webapp
           IMAGE_TAG: latest
         run: |
-          cd webapp/
+          cd templates/
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_APP:$IMAGE_TAG
